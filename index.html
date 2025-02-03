@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Display Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background: #0073e6;
+            color: white;
+            padding: 20px;
+            font-size: 1.5em;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #earnings {
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .ad-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .ad-slot {
+            background: white;
+            padding: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        .close-btn {
+            cursor: pointer;
+            font-size: 20px;
+            color: red;
+        }
+        @media (max-width: 768px) {
+            .ad-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ad Display with Real-Time Earnings</h1>
+        <div id="earnings">Earnings: $<span id="earnings-value">0.00</span></div>
+    </header>
+    
+    <main class="ad-container">
+        <div class="ad-slot">
+            <script type="text/javascript" src="//witnessportfoliolobes.com/8f01b1a20fbd9233943d4935720f9027/invoke.js"></script>
+        </div>
+        <div class="ad-slot">
+            <script type="text/javascript" src="//witnessportfoliolobes.com/bc1d0ce1f111c33ee319008eeb2958fa/invoke.js"></script>
+        </div>
+        <div class="ad-slot">
+            <script type="text/javascript" src="//witnessportfoliolobes.com/446e8f60f0cb5f57971f8bb7025a1f51/invoke.js"></script>
+        </div>
+        <div class="ad-slot">
+            <script type='text/javascript' src='//witnessportfoliolobes.com/ec/c0/ef/ecc0ef53ea62278b9ba2dcb4783fe17b.js'></script>
+        </div>
+        <div class="ad-slot">
+            <script async="async" data-cfasync="false" src="//witnessportfoliolobes.com/ab5c33b10d1eee566350fac63b4bf187/invoke.js"></script>
+            <div id="container-ab5c33b10d1eee566350fac63b4bf187"></div>
+        </div>
+    </main>
+    
+    <script type='text/javascript' src='//witnessportfoliolobes.com/01/4b/3b/014b3b9a392d926d1cd9aeb394b6515a.js'></script>
+    
+    <div id="popup-ad" class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <p>Popup Ad Content</p>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const earningsValue = document.getElementById("earnings-value");
+            const popupAd = document.getElementById("popup-ad");
+            const closeBtn = document.querySelector(".close-btn");
+            
+            function updateEarnings() {
+                fetch('https://api.adsterra.com/earnings') // Replace with real Adsterra API endpoint
+                    .then(response => response.json())
+                    .then(data => {
+                        earningsValue.textContent = data.earnings.toFixed(2);
+                    })
+                    .catch(error => console.error("Error fetching earnings:", error));
+            }
+            
+            setInterval(updateEarnings, 60000); // Update earnings every 60 seconds
+            
+            setTimeout(() => {
+                popupAd.style.display = "block";
+            }, 5000);
+            
+            closeBtn.addEventListener("click", () => {
+                popupAd.style.display = "none";
+            });
+        });
+    </script>
+</body>
+</html>
